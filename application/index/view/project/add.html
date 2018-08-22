@@ -1,0 +1,278 @@
+{include file="public/toper"}
+<div class="layui-card">
+    <div class="layui-card-header"> 新建项目 </div>
+    <div class="layui-card-body">
+        <form class="layui-form" action="" method="POST" lay-filter="filterItemForm">
+
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">&nbsp;&nbsp;</label>
+                    <div class="layui-input-inline">
+                        <input type="radio" name="method" value="0" title="自营项目" checked="checked">
+                    </div>
+                    <div class="layui-input-inline">
+                        <input type="radio" name="method" value="1" title="联营项目">
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">项目类型</label>
+                    <div class="layui-input-inline">
+                        <input type="radio" name="type" value="0" title="签约型" checked="checked">
+                        <input type="radio" name="type" value="1" title="流水型">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">项目名称</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" lay-verify="required" autocomplete="off" name="name" id="name">
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-inline">
+
+                    <label class="layui-form-label">所属公司</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" autocomplete="off" name="company" id="company" lay-verify="required">
+                    </div>
+                    <label class="layui-form-label">联系电话</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" autocomplete="off" name="phone" id="phone" lay-verify="required">
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">工程地址</label>
+                <div class="layui-input-inline" style="width: 30%">
+                    <input class="layui-input" autocomplete="off" name="address" id="address" lay-verify="required">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">建档日期</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" id="bookBuildDateStr" name="bookBuildDateStr" lay-verify="required" placeholder="年-月-日" autocomplete="off">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">建设单位</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" autocomplete="off" name="buildUnit" id="buildUnit" lay-verify="required">
+                    </div>
+                    <label class="layui-form-label">设计单位</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" autocomplete="off" name="designUnit" id="designUnit" lay-verify="required">
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">监理单位</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" autocomplete="off" name="supervisorUnit" id="supervisorUnit" lay-verify="required">
+                    </div>
+                    <label class="layui-form-label">咨询机构</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" autocomplete="off" name="advisoryBody" id="advisoryBody" lay-veriry="required">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">开工时间</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" id="startTimeStr" name="startTimeStr" lay-veriry="required" type="text" placeholder="年-月-日" autocomplete="off">
+                    </div>
+                    <label class="layui-form-label">竣工时间</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" id="endTimeStr" name="endTimeStr" lay-veriry="required" type="text" placeholder="年-月-日" autocomplete="off">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">保证金比例</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" autocomplete="off" lay-veriry="required" name="bondRatio" id="bondRatio">
+                    </div>
+                    <label class="layui-form-label">保证金数额</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" autocomplete="off" lay-veriry="required" name="bond" id="bond">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">预估成本</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" autocomplete="off" lay-veriry="required" name="estimateCost" id="estimateCost">
+                    </div>
+                    <label class="layui-form-label">合同金额</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" autocomplete="off" lay-veriry="required" name="contractAmount" id="contractAmount">
+                    </div>
+                    <label class="layui-form-label">结算金额</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" autocomplete="off" lay-veriry="required" name="settlementAmount" id="settlementAmount">
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">项目负责人</label>
+                <div class="layui-input-inline">
+                    <input class="layui-input" autocomplete="off" lay-veriry="required" type="text" name="leader" id="leader">
+                </div>
+
+            </div>
+
+            <div class="layui-form-item" style="width: 50%">
+                <label class="layui-form-label">备注</label>
+                <div class="layui-input-block">
+                    <textarea placeholder="请输入内容" class="layui-textarea" name="note" id="note"></textarea>
+                </div>
+
+            </div>
+
+            <div class="layui-form-item layui-bg-gray">
+                <label class="layui-form-label">开票信息：</label>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+
+
+                    <label class="layui-form-label">公司名称</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" type="text" autocomplete="off" lay-veriry="required" name="invoiceCompany" id="invoiceCompany">
+                    </div>
+                    <label class="layui-form-label">税号</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" type="text" autocomplete="off" lay-veriry="required" name="dutyParagraph" id="dutyParagraph">
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">开户账号</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" type="text" autocomplete="off" lay-veriry="required" name="bankNumber" id="bankNumber">
+                    </div>
+                    <label class="layui-form-label">开户行名称</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" type="text" autocomplete="off" lay-veriry="required" name="bankName" id="bankName">
+                    </div>
+                </div>
+
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">开户行地址</label>
+                <div class="layui-input-inline">
+                    <input class="layui-input" type="text" autocomplete="off" lay-veriry="required" name="bankAddress" id="bankAddress">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn  " lay-submit lay-filter="filterSubmit">确定</button>
+                    <button class="layui-btn  " type="reset">重置</button>
+                </div>
+            </div>
+
+
+
+        </form>
+    </div>
+
+</div>
+<script>
+    layui.use(['form', 'table', 'laydate'], function () {
+        var $ = layui.$
+            , form = layui.form
+            , table = layui.table
+            , laydate = layui.laydate
+            ;
+        //建档日期
+        laydate.render({
+            elem: '#bookBuildDateStr'
+        });
+        //开始时间
+        laydate.render({
+            elem: '#startTimeStr'
+        });
+        //竣工时间
+        laydate.render({
+            elem: '#endTimeStr'
+        });
+
+
+        //表单提交按钮监听
+        form.on('submit(filterSubmit)', function (data) {
+            var param = data.field;
+            // layer.alert(JSON.stringify(param));
+            $.post('{:url("project/addItem")}', param, function (result) {
+                if (result == 1) {
+                    layer.msg("添加成功");
+                }
+            });
+            return false;
+        });
+
+
+        //表单初始赋值
+        form.val('filterItemForm', {
+            "name": "项目名称"
+            , "company": "所属公司名称"
+            , "address": "工程地址"
+            , "phone": "15369852632"
+            , "buildUnit": "建设单位名称"
+            , "designUnit": "设计单位名称"
+            , "supervisorUnit": "监理单位名称"
+            , "advisoryBody": "咨询机构名称"
+            , "bondRatio": "质量保证金比例"
+            , "bond": "质量保证金数额"
+            , "estimateCost": "预估成本"
+            , "contractAmount": "合同金额"
+            , "settlementAmount": "结算金额"
+            , "leader": "项目负责人"
+            , "note": "备注信息"
+            , "invoiceCompany": "开票公司名称"
+            , "dutyParagraph": "税号"
+            , "bankAddress": "开户行地址"
+            , "bankName": "开户行名称"
+            , "bankNumber": "账号"
+            , "bookBuildDateStr": "2018-08-18"
+            , "startTimeStr": "2018-08-18"
+            , "endTimeStr": "2018-08-18"
+        });
+
+
+    });
+</script> {include file="public/footer"}

@@ -1,7 +1,7 @@
 {include file="public/toper" /}
 <div class="layui-layout layui-layout-admin">
   <div class="layui-header">
-    <div class="layui-logo">管理系统</div>
+    <div class="layui-logo">财务记账通系统</div>
     <!-- 头部区域（可配合layui已有的水平导航） -->
     <ul class="layui-nav layui-layout-left">
       <li class="layui-nav-item">
@@ -53,30 +53,30 @@
       <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
       <ul class="layui-nav layui-nav-tree" lay-filter="test">
         <li class="layui-nav-item layui-nav-itemed">
-          <a class="" href="javascript:;">会员管理</a>
+          <a class="" href="javascript:;">项目管理</a>
           <dl class="layui-nav-child">
             <dd>
-              <a target="main" href="<?php echo url( 'vip/rights')?> ">会员权益</a>
+              <a target="main" href="<?php echo url( 'vip/rights')?> ">新建项目</a>
             </dd>
             <dd>
-              <a target="main" href="<?php echo url( 'vip/info')?> ">会员列表</a>
+              <a target="main" href="<?php echo url( 'vip/info')?> ">进行中的项目</a>
             </dd>
             <dd>
-              <a target="main" href="<?php echo url( 'vip/loyal')?>">会员忠诚度</a>
+              <a target="main" href="<?php echo url( 'vip/loyal')?>">已归档的项目</a>
             </dd>
           </dl>
         </li>
         <li class="layui-nav-item">
-          <a href="javascript:;">解决方案</a>
+          <a href="javascript:;">项目管理</a>
           <dl class="layui-nav-child">
             <dd>
-              <a href="javascript:;">列表一</a>
+              <a target="main" href="<?php echo url('project/add')?>">新建项目</a>
             </dd>
             <dd>
-              <a href="javascript:;">列表二</a>
+              <a target="main" href="<?php echo url('project/underway')?>">进行中的项目</a>
             </dd>
             <dd>
-              <a href="">超链接</a>
+              <a target="main" href="<?php echo url('project/archived')?>">已归档的项目</a>
             </dd>
           </dl>
         </li>
@@ -98,10 +98,9 @@
 
 </div>
 <script>
-  layui.use(['element'],function(){
+  layui.use(['element'], function () {
     var element = layui.element
-    
-    ;
+
+      ;
   });
-</script>
-{include file="public/footer " /}
+</script> {include file="public/footer " /}

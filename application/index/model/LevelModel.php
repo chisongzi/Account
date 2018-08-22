@@ -51,4 +51,5 @@ class LevelModel extends BaseModel
         ->update();
         return $result;
     }
+
 }
