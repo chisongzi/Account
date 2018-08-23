@@ -13,10 +13,17 @@
     </div>
 
 </div>
+
+
+
+
+
 <script>
-    layui.use(['table'], function () {
+    layui.use(['table', 'layer', 'form'], function () {
         var $ = layui.$
             , table = layui.table
+            , layer = layui.layer
+            , form = layui.form
             ;
 
         table.render({
@@ -35,6 +42,59 @@
             , page: true
         });
 
-        
+        table.on('tool(filterUnderwayTable)', function (obj) {
+            var data = obj.data;
+            if (obj.event == "detail") {
+                $.post('{:url("project/itemDetail")}', data, function (result) {
+                    if (result == "" || result == null) {
+                        layer.msg("获取信息失败");
+                    } else {
+                        showItemDetail(result);
+                    }
+                });
+            }
+        });
+
+        function showItemDetail(itemInfo) {
+            layer.open({
+                type: 1
+                , title: '项目详情'
+                , area: ['1200px','800px']
+                , content: '<div class="layui-card"><div class="layui-card-body"><form class="layui-form" action="" lay-filter="filterItemForm"><div class="layui-form-item"><div class="layui-inline"><label class="layui-form-label">&nbsp;&nbsp;</label><div class="layui-input-inline"><input class="layui-input" type="text" name="methodStr"  disabled ></div></div></div><div class="layui-form-item"><div class="layui-inline"><label class="layui-form-label">项目类型</label><div class="layui-input-inline"><input class="layui-input" type="text" name="typeStr" disabled ></div></div></div><div class="layui-form-item"><div class="layui-inline"><label class="layui-form-label">项目名称</label><div class="layui-input-inline"><input class="layui-input" lay-verify="required" autocomplete="off" name="name" id="name" disabled ></div></div></div><div class="layui-form-item"><div class="layui-inline"><label class="layui-form-label">所属公司</label><div class="layui-input-inline"><input class="layui-input" autocomplete="off" name="company" id="company" lay-verify="required"  disabled></div><label class="layui-form-label">联系电话</label><div class="layui-input-inline"><input class="layui-input" autocomplete="off" name="phone" id="phone" lay-verify="required"  disabled></div></div></div><div class="layui-form-item"><label class="layui-form-label">工程地址</label><div class="layui-input-inline" style="width: 30%"><input class="layui-input" autocomplete="off" name="address" id="address" lay-verify="required"  disabled></div></div><div class="layui-form-item"><div class="layui-inline"><label class="layui-form-label">建档日期</label><div class="layui-input-inline"><input class="layui-input" id="bookBuildDateStr" name="bookBuildDateStr" lay-verify="required" placeholder="年-月-日" autocomplete="off"  disabled></div></div></div><div class="layui-form-item"><div class="layui-inline"><label class="layui-form-label">建设单位</label><div class="layui-input-inline"><input class="layui-input" autocomplete="off" name="buildUnit" id="buildUnit" lay-verify="required"  disabled></div><label class="layui-form-label">设计单位</label><div class="layui-input-inline"><input class="layui-input" autocomplete="off" name="designUnit" id="designUnit" lay-verify="required"  disabled></div></div></div><div class="layui-form-item"><div class="layui-inline"><label class="layui-form-label">监理单位</label><div class="layui-input-inline"><input class="layui-input" autocomplete="off" name="supervisorUnit" id="supervisorUnit" lay-verify="required"  disabled></div><label class="layui-form-label">咨询机构</label><div class="layui-input-inline"><input class="layui-input" autocomplete="off" name="advisoryBody" id="advisoryBody" lay-veriry="required"  disabled></div></div></div><div class="layui-form-item"><div class="layui-inline"><label class="layui-form-label">开工时间</label><div class="layui-input-inline"><input class="layui-input" id="startTimeStr" name="startTimeStr" lay-veriry="required"  disabled type="text" placeholder="年-月-日" autocomplete="off"></div><label class="layui-form-label">竣工时间</label><div class="layui-input-inline"><input class="layui-input" id="endTimeStr" name="endTimeStr" lay-veriry="required" type="text" placeholder="年-月-日" autocomplete="off"  disabled></div></div></div><div class="layui-form-item"><div class="layui-inline"><label class="layui-form-label">保证金比例</label><div class="layui-input-inline"><input class="layui-input" autocomplete="off" lay-veriry="required" name="bondRatio" id="bondRatio"  disabled></div><label class="layui-form-label">保证金数额</label><div class="layui-input-inline"><input class="layui-input" autocomplete="off" lay-veriry="required" name="bond" id="bond"  disabled></div></div></div><div class="layui-form-item"><div class="layui-inline"><label class="layui-form-label">预估成本</label><div class="layui-input-inline"><input class="layui-input" autocomplete="off" lay-veriry="required" name="estimateCost" id="estimateCost"  disabled></div><label class="layui-form-label">合同金额</label><div class="layui-input-inline"><input class="layui-input" autocomplete="off" lay-veriry="required" name="contractAmount" id="contractAmount"  disabled></div><label class="layui-form-label">结算金额</label><div class="layui-input-inline"><input class="layui-input" autocomplete="off" lay-veriry="required" name="settlementAmount" id="settlementAmount"  disabled></div></div></div><div class="layui-form-item"><label class="layui-form-label">项目负责人</label><div class="layui-input-inline"><input class="layui-input" autocomplete="off" lay-veriry="required" type="text" name="leader" id="leader"  disabled></div></div><div class="layui-form-item" style="width: 50%"><label class="layui-form-label">备注</label><div class="layui-input-block"><textarea placeholder="请输入内容" class="layui-textarea" name="note" id="note"  disabled></textarea></div></div><div class="layui-form-item layui-bg-gray"><label class="layui-form-label">开票信息：</label></div><div class="layui-form-item"><div class="layui-inline"><label class="layui-form-label">公司名称</label><div class="layui-input-inline"><input class="layui-input" type="text" autocomplete="off" lay-veriry="required" name="invoiceCompany" id="invoiceCompany"  disabled></div><label class="layui-form-label">税号</label><div class="layui-input-inline"><input class="layui-input" type="text" autocomplete="off" lay-veriry="required" name="dutyParagraph" id="dutyParagraph"  disabled></div></div></div><div class="layui-form-item"><div class="layui-inline"><label class="layui-form-label">开户账号</label><div class="layui-input-inline"><input class="layui-input" type="text" autocomplete="off" lay-veriry="required" name="bankNumber" id="bankNumber"  disabled></div><label class="layui-form-label">开户行名称</label><div class="layui-input-inline"><input class="layui-input" type="text" autocomplete="off" lay-veriry="required" name="bankName" id="bankName"  disabled></div></div></div><div class="layui-form-item"><label class="layui-form-label">开户行地址</label><div class="layui-input-inline"><input class="layui-input" type="text" autocomplete="off" lay-veriry="required" name="bankAddress" id="bankAddress"  disabled> </div></div></form></div></div>'
+                , success: function (layero, index) {
+                    console.log(itemInfo[0].method_str);
+                    //表单初始赋值
+                    form.val('filterItemForm', {
+                        "methodStr":itemInfo[0].method_str
+                        ,"typeStr":itemInfo[0].type_str
+                        ,"name": itemInfo[0].name
+                        , "company": itemInfo[0].company
+                        , "address": itemInfo[0].address
+                        , "phone": itemInfo[0].phone
+                        , "buildUnit": itemInfo[0].build_unit
+                        , "designUnit":itemInfo[0].design_unit
+                        , "supervisorUnit": itemInfo[0].supervisor_unit
+                        , "advisoryBody": itemInfo[0].advisory_body
+                        , "bondRatio": itemInfo[0].bond_ratio
+                        , "bond": itemInfo[0].bond
+                        , "estimateCost": itemInfo[0].estimate_cost
+                        , "contractAmount": itemInfo[0].contract_amount
+                        , "settlementAmount": itemInfo[0].settlement_amount
+                        , "leader": itemInfo[0].leader
+                        , "note": itemInfo[0].note
+                        , "invoiceCompany": itemInfo[0].invoice_company
+                        , "dutyParagraph": itemInfo[0].duty_paragraph
+                        , "bankAddress": itemInfo[0].bank_address
+                        , "bankName": itemInfo[0].bank_name
+                        , "bankNumber": itemInfo[0].bank_number
+                        , "bookBuildDateStr": itemInfo[0].book_build_date_str
+                        , "startTimeStr": itemInfo[0].start_time_str
+                        , "endTimeStr": itemInfo[0].end_time_str
+                    });
+                }
+            });
+
+        }
+
     });
 </script> {include file="public/footer"}

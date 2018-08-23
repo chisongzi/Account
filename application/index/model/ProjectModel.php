@@ -100,7 +100,12 @@ class ProjectModel extends BaseModel{
 
     }
     //项目详情信息
-    public function detailItem($id){
-
+    public function itemDetail($id){
+        $result = DB::name('acc_item')
+        ->where('id',$id)
+        ->select()
+        ;
+        file_put_contents('log.txt',json_encode($result));
+       return $result;
     }
 }

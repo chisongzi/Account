@@ -37,5 +37,15 @@ class Project extends Controller
         $data = $this->model->itemList($status);
         echo $data;
     }
+    //项目详情
+    public function itemDetail(){
+        if(request()->isPost()){
+
+            $param = input('post.');
+            $this->model = model('index/ProjectModel');
+            $result = $this->model->itemDetail($param['id']);
+            return $result;
+        }
+    }
 }
  
