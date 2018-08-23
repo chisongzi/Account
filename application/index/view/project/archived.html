@@ -1,3 +1,38 @@
 {include file="public/toper"}
-<div>已归档的项目</div>
-{include file="public/footer"}
+<div class="layui-card">
+    <div class="layui-card-header">已归档的项目 </div>
+    <div class="layui-card-body">
+        <div class="layui-btn-group">
+            <a target="main" class="layui-btn" href="<?php echo url( 'project/add')?> ">新建项目</a>
+        </div>
+
+        <table class="layui-table" id="tableUnderway" lay-filter="filterUnderwayTable"> </table>
+        <script type="text/html" id="barDetail">
+            <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+        </script>
+    </div>
+
+</div>
+<script>
+    layui.use(['table'], function () {
+        var $ = layui.$
+            , table = layui.table
+            ;
+
+        table.render({
+            elem: '#tableUnderway'
+            , url: '/index/project/itemList/status/1'
+            , width: 620
+            , height: 500
+            , cols: [[
+                { field: 'id', title: "序号", width: 80, sort: true }
+                , { field: 'name', title: "项目名称", width: 120 }
+                , { field: 'start_time_str', title: "开始时间", width: 120, sort: true }
+                , { field: 'type_str', title: "项目类型", width: 100 }
+                , { field: 'leader', title: "负责人", width: 100 }
+                , { fiexed: 'right', title: "操作", width: 100, align: "center", toolbar: '#barDetail' }
+            ]]
+            , page: true
+        });
+    });
+</script> {include file="public/footer"}

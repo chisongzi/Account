@@ -1,25 +1,27 @@
 <?php
-namespace app\think\controller;
+namespace app\index\model;
 use think\Model;
 use think\DB;
 use app\index\model\BaseModel;
 class ProjectModel extends BaseModel{
 
     //项目信息列表
-    public function itemList(){
+    public function itemList($status){
         $data = DB::table('acc_item')
-        ->field('id','name','start_time_str','type_str','leader')
+        ->field('id,name,start_time_str,type_str,leader')
+        ->where('status',$status)
         ->where('is_del',0)
         ->select()
         ;
         $result = [
             'code'=>0,
-            'msg'=>'',
+            'msg'=>'222',
             'count'=>count($data),
             'data'=>(object)[]
         ];
 
         $result['data'] = $data;
+        file_put_contents('log.txt', json_encode($result));
         return json_encode($result);
     }
 
@@ -37,11 +39,11 @@ class ProjectModel extends BaseModel{
             'data'=>(object)[]
         ];
         $result['data'] = $data;
+   
         return json_encode($result);
     }
     //添加项目
     public function addItem($item){
-        file_put_contents('log.txt', "projectAddItem");
         $data= [
             'name'=>$item['name'],
             'method'=>$item['method'],
@@ -69,27 +71,29 @@ class ProjectModel extends BaseModel{
             'duty_paragraph'=>$item['dutyParagraph'],
             'bank_address'=>$item['bankAddress'],
             'bank_name'=>$item['bankName'],
-            'bank_number'=>$item['bankNumber'],
+            'bank_number'=>$item['bankNumber']
         ];
 
 
         $method = $item['method'];
         if($method == 0){
-            $item['method_str'] = "自营项目";
+            $data['method_str'] = "自营项目";
         }else if($method == 1){
-            $item['method_str'] = "联营项目";
+            $data['method_str'] = "联营项目";
 
         }
 
         $type = $item['type'];
         if($type == 0){
-            $item['type_str'] = "签约型";
+            $data['type_str'] = "签约型";
         }else if($type == 1){
-            $item['type_str'] = "流水型";
+            $data['type_str'] = "流水型";
 
         }
-        $result = DB::name('acc_item')->insert($item);
+       
+        $result = DB::name('acc_item')->insert($data);
         return $result;
+        // return 1;
     }
     //删除项目
     public function deleteItem($id){

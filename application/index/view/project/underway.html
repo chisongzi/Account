@@ -3,7 +3,7 @@
     <div class="layui-card-header">进行中的项目 </div>
     <div class="layui-card-body">
         <div class="layui-btn-group">
-            <button class="layui-btn" data-type="add">新建项目</button>
+            <a target="main" class="layui-btn" href="<?php echo url( 'project/add')?> ">新建项目</a>
         </div>
 
         <table class="layui-table" id="tableUnderway" lay-filter="filterUnderwayTable"> </table>
@@ -21,18 +21,20 @@
 
         table.render({
             elem: '#tableUnderway'
-            , url: ''
-            , width: 600
+            , url: '/index/project/itemList/status/0'
+            , width: 620
             , height: 500
             , cols: [[
-                { field: 'id', title: '序号', width: 80, sort: true }
-                , { field: 'name', title: '项目名称', width: 120 }
-                , { field: 'startDate', title: '开始时间', width: 120, sort: true }
-                , { field: 'type', title: '项目类型', width: 100 }
-                , { field: '', title: '负责人', width: 100 }
-                , { fiexed: 'right', title: '操作', width: 60, align: 'center', toolbar: '#barDetail' }
+                { field: 'id', title: "序号", width: 80, sort: true }
+                , { field: 'name', title: "项目名称", width: 120 }
+                , { field: 'start_time_str', title: "开始时间", width: 120, sort: true }
+                , { field: 'type_str', title: "项目类型", width: 100 }
+                , { field: 'leader', title: "负责人", width: 100 }
+                , { fiexed: 'right', title: "操作", width: 100, align: "center", toolbar: '#barDetail' }
             ]]
             , page: true
         });
+
+        
     });
 </script> {include file="public/footer"}

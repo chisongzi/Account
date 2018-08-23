@@ -21,6 +21,7 @@ class Project extends Controller
         return $this->fetch();
     }
 
+    //新建项目
     public function addItem(){
        
         if(request()->isPost()){
@@ -30,4 +31,11 @@ class Project extends Controller
             return $result;
         }
     }
+    //项目列表 0 进行中项目 1 已归档项目
+    public function itemList($status){
+        $this->model = model('index/ProjectModel');
+        $data = $this->model->itemList($status);
+        echo $data;
+    }
 }
+ 

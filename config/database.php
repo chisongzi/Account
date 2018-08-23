@@ -16,6 +16,7 @@ return [
     'hostname'        => '127.0.0.1',
     // 数据库名
     'database'        => 'account',
+    // 'database'        => 'marketing_manager',
     // 用户名
     'username'        => 'root',
     // 密码

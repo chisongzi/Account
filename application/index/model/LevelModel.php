@@ -23,6 +23,7 @@ class LevelModel extends BaseModel
             ];
 
         $return['data'] = $data;
+        file_put_contents('log.txt', json_encode($return));
         return json_encode($return);
     }
     public function addLevel($param)
@@ -38,8 +39,8 @@ class LevelModel extends BaseModel
             "level_name"=>$param['levelName'],
             "sale_card_amount"=>$param['saleAmount']
         ];
+        file_put_contents('log.txt', json_encode($data));
         $result = DB::name('user_level')->insert($data);
-        file_put_contents('log.txt', json_encode($result));
         return $result;
     }
 
