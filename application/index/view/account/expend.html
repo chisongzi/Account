@@ -1,0 +1,107 @@
+{include file="public/toper"}
+<div class="layui-card">
+    <div class="layui-card-header">支出记账 </div>
+    <div class="layui-card-body">
+        <form class="layui-form" action="" lay-filter="filterExpendForm">
+            <div class="layui-form-item">
+                <label class="layui-form-label">支出金额</label>
+                <div class="layui-input-inline">
+                    <input class="layui-input" type="text" autocomplete="off">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">支出类型</label>
+                    <div class="layui-input-inline">
+                        <select name="expendType">
+                            <option value="">请选择支出类型</option>
+                            <option value="1">生活用品</option>
+                            <option value="2">家用电器</option>
+                            <option value="3">电子产品</option>
+                        </select>
+                    </div>
+                    <label class="layui-form-label">生意伙伴</label>
+                    <div class="layui-input-inline">
+                        <select name="bussinessPartner">
+                            <option value="">请选择生意伙伴</option>
+                            <option value="1">生意伙伴1</option>
+                            <option value="2">生意伙伴2</option>
+                            <option value="3">生意伙伴3</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">支出账户</label>
+                    <div class="layui-input-inline">
+                        <select name="expendAccount">
+                            <option value="">请选择账户</option>
+                            <option value="1">账户1</option>
+                            <option value="2">账户2</option>
+                            <option value="3">账户3</option>
+                        </select>
+                    </div>
+                    <label class="layui-form-label">付款日期</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" id="paymentDateStr" name="paymentDateStr" placeholder="年-月-日">
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">业务项目</label>
+                    <div class="layui-input-inline">
+                        <select name="project">
+                            <option value="">请选择项目</option>
+                            <option value="1">项目1</option>
+                            <option value="2">项目2</option>
+                            <option value="3">项目3</option>
+                        </select>
+                    </div>
+                    <label class="layui-form-label">经办人</label>
+                    <div class="layui-input-inline">
+                        <select name="agent">
+                            <option value="">请选择经办人</option>
+                            <option value="1">经办人1</option>
+                            <option value="2">经办人2</option>
+                            <option value="3">经办人3</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">说明</label>
+                <div class="layui-input-block" style="width:30%">
+                    <textarea class="layui-textarea"></textarea>
+                </div>
+
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn layui-btn-normal" lay-submit lay-filter="filterSubmit">确定</button>
+                    <button class="layui-btn layui-btn-normal" type="reset">重置</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+<script>
+    layui.use(['form', 'layer', 'laydate'], function () {
+        var $ = layui.$
+            , form = layui.form
+            , layer = layui.layer
+            , laydate = layui.laydate
+            ;
+        laydate.render({
+            elem: '#paymentDateStr'
+        });
+
+    });
+</script> {include file="public/footer"}
