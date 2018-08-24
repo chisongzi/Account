@@ -1,0 +1,86 @@
+{include file="public/toper"}
+<div class="layui-card">
+    <div class="layui-card-header">经办人管理 </div>
+    <div class="layui-card-body">
+        <div class="operate">
+            <div class="layui-inline">
+                <input class="layui-input" name="searchKey" id="searchKey" placeholder="请输入关键字">
+            </div>
+            <button class="layui-btn  " data-type="search">搜索</button>
+            <button class="layui-btn  " data-type="add">添加</button>
+        </div>
+        <table class="layui-table" lay-filter="filterAgentTable" id="agentTable"></table>
+    </div>
+
+</div>
+
+
+
+
+
+<script>
+    layui.use(['table', 'form'], function () {
+        var $ = layui.$
+            , table = layui.table
+            , form = layui.form
+            ;
+
+        table.render({
+            elem: '#agentTable'
+            , url: '/index/setting/agentList'
+            , cols: [[
+                { field: 'id', title: '序号' }
+                , { field: "name", title: "经办人名称" }
+                , { field: "phone", title: "联系电话" }
+                , { field: "note", title: "备注" }
+            ]]
+            , page: true
+        });
+
+        active = {
+            search: function () {
+                layer.msg("搜索");
+            }
+            , add: function () {
+                addAgent();
+            }
+        };
+
+        $('.operate .layui-btn').on('click', function () {
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+
+        //添加经办人
+        function addAgent() {
+            layer.open({
+                type: 1
+                , title: "添加经办人"
+                , area: '800px'
+                , content: '<div class="layui-card"><div class="layui-card-body"><form class="layui-form" lay-filter="filterAgentForm"><div class="layui-form-item"><div class="layui-inline"><label class="layui-form-label">经办人名称</label><div class="layui-input-inline"><input class="layui-input" name="name" id="name" lay-verify="required"></div><label class="layui-form-label">联系电话</label><div class="layui-input-inline"><input class="layui-input" name="phone" id="phone" lay-verify="required" ></div></div></div><div class="layui-form-item"><label class="layui-form-label">备注</label><div class="layui-input-inline" style="width:500px"><textarea class="layui-textarea" name="note" id="note"></textarea></div></div><div class="layui-form-item" pane=""><label class="layui-form-label">&nbsp;</label><div class="layui-input-block" ><input type="checkbox" name="isDefault" id="isDefault" lay-skin="primary" title="是否设为默认"></div></div><div class="layui-form-item"><div class="layui-input-block"><button class="layui-btn  " lay-submit lay-filter="filterSubmit">确定</button><button class="layui-btn" type="reset">重置</button></div></div></form></div></div>'
+                , success: function (layero, index) {
+                    form.val('filterAgentForm');
+
+                    form.on('submit(filterSubmit)', function (obj) {
+                        var data = obj.field;
+                        $.post('{:url("setting/addAgent")}', data, function (result) {
+                            if (result == 1) {
+                                layer.close(index);
+
+                                table.reload('agentTable', {
+                                    page: {
+                                        curr: 1
+                                    }
+                                });
+                            } else {
+                                layer.msg("添加失败");
+                            }
+                        });
+                        return false;
+                    });
+
+                }
+            });
+        }
+    });
+</script> {include file="public/footer"}

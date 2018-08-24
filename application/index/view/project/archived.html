@@ -22,15 +22,13 @@
         table.render({
             elem: '#tableUnderway'
             , url: '/index/project/itemList/status/1'
-            , width: 620
-            , height: 500
             , cols: [[
-                { field: 'id', title: "序号", width: 80, sort: true }
-                , { field: 'name', title: "项目名称", width: 120 }
-                , { field: 'start_time_str', title: "开始时间", width: 120, sort: true }
-                , { field: 'type_str', title: "项目类型", width: 100 }
-                , { field: 'leader', title: "负责人", width: 100 }
-                , { fiexed: 'right', title: "操作", width: 100, align: "center", toolbar: '#barDetail' }
+                { field: 'id', title: "序号", sort: true }
+                , { field: 'name', title: "项目名称", }
+                , { field: 'start_time_str', title: "开始时间", sort: true }
+                , { field: 'type_str', title: "项目类型", }
+                , { field: 'leader', title: "负责人", }
+                , { fiexed: 'right', title: "操作", align: "center", toolbar: '#barDetail' }
             ]]
             , page: true
         });
