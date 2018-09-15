@@ -21,7 +21,6 @@ class ProjectModel extends BaseModel{
         ];
 
         $result['data'] = $data;
-        file_put_contents('log.txt', json_encode($result));
         return json_encode($result);
     }
 
@@ -36,14 +35,8 @@ class ProjectModel extends BaseModel{
 
         $nameArray = array();
         foreach($data as $value){
-            $nameArray[$value['id']] = $value['name'];
-
-
-            // $valueArray = array();
-            // $valueArray['name'] = $value['name'];
-            // $valueArray['method'] = $value['method'];
-            // $nameArray[$value['id']] = $valueArray;
-
+            $key = $value['id']."-".$value['method']."-".$value['name'];
+            $nameArray[$key] = $value['name'];
         }
         return $nameArray;
     }

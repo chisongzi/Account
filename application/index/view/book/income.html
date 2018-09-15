@@ -1,22 +1,22 @@
 {include file="public/toper"}
 <div class="layui-card">
-    <div class="layui-card-header">支出记账 </div>
+    <div class="layui-card-header">收入记账 </div>
     <div class="layui-card-body">
-        <form class="layui-form" action="" lay-filter="filterExpendForm" id="expendForm">
+        <form class="layui-form" action="" lay-filter="filterIncomeForm" id="incomeForm">
             <div class="layui-form-item">
-                <label class="layui-form-label">支出金额</label>
+                <label class="layui-form-label">收入金额</label>
                 <div class="layui-input-inline">
-                    <input class="layui-input" type="number" name="expendAmount" id="expendAmount" lay-verify="required"
+                    <input class="layui-input" type="number" name="incomeAmount" id="incomeAmount" lay-verify="required"
                         autocomplete="off">
                 </div>
             </div>
             <div class="layui-form-item">
                 <div class="layui-inline">
-                    <label class="layui-form-label">支出类型</label>
+                    <label class="layui-form-label">收入类型</label>
                     <div class="layui-input-inline">
-                        <select name="expendType" lay-verify="required">
+                        <select name="incomeType" lay-verify="required">
 
-                            <option value="">请选择支出类型</option>
+                            <option value="">请选择收入类型</option>
                             <option value="生活用品">生活用品</option>
                             <option value="家用电器">家用电器</option>
                             <option value="电子产品">电子产品</option>
@@ -38,18 +38,18 @@
 
             <div class="layui-form-item">
                 <div class="layui-inline">
-                    <label class="layui-form-label">支出账户</label>
+                    <label class="layui-form-label">收入账户</label>
                     <div class="layui-input-inline">
-                        <select name="expendAccount" lay-verify="required">
+                        <select name="incomeAccount" lay-verify="required">
                             <option value="">请选择账户</option>
                             {foreach $accountNameList as $key=> $value}
                             <option value="{$key}">{$value}</option>
                             {/foreach}
                         </select>
                     </div>
-                    <label class="layui-form-label">付款日期</label>
+                    <label class="layui-form-label">收款日期</label>
                     <div class="layui-input-inline">
-                        <input class="layui-input" id="paymentDateStr" name="paymentDateStr" lay-verify="required|date"
+                        <input class="layui-input" id="incomeDateStr" name="incomeDateStr" lay-verify="required|date"
                             placeholder="年-月-日" autocomplete="off">
                     </div>
                 </div>
@@ -90,7 +90,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">说明</label>
                 <div class="layui-input-block" style="width:30%">
-                    <textarea class="layui-textarea"></textarea>
+                    <textarea class="layui-textarea" name="note" id="note"></textarea>
                 </div>
 
             </div>
@@ -112,16 +112,16 @@
             , laydate = layui.laydate
             ;
         laydate.render({
-            elem: '#paymentDateStr'
+            elem: '#incomeDateStr'
         });
 
         form.on('submit(filterSubmit)', function (obj) {
             var data = obj.field;
             // layer.alert(JSON.stringify(data));
-            $.post('{:url("book/expendAccount")}', data, function (res) {
+            $.post('{:url("book/incomeAccount")}', data, function (res) {
                 if (res == 1) {
                     layer.msg("记账成功");
-                    $('#expendForm')[0].reset();
+                    $('#incomeForm')[0].reset();
                 }
             });
             return false;

@@ -43,7 +43,7 @@ class AgentModel extends BaseModel{
         ;
         $nameArray = array();
         foreach($data as $value){
-            $nameArray[$value['id']] = $value['name'];
+            $nameArray[$value['id']."-".$value['name']] = $value['name'];
         }
         return $nameArray;
     }

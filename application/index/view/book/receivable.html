@@ -1,0 +1,33 @@
+{include file="public/toper"}
+<div class="layui-card">
+    <div class="layui-card-header">应收记账</div>
+    <div class="layui-card-body">
+        <table class="layui-table" id="receivableTable" lay-filter="filterReceivable"></table>
+    </div>
+
+</div>
+<script>
+    layui.use(['table'], function () {
+        var $ = layui.$
+            , table = layui.table
+            ;
+
+        table.render({
+            elem: '#receivableTable'
+            , url: "/index/book/receivableList"
+            , cols: [[
+                { field: 'id', title: '序号', sort: true }
+                , { field: 'number', title: '单号', sort: true }
+                , { field: 'type_str', title: '收入类型', sort: true }
+                , { field: 'partner_str', title: '生意伙伴', sort: true }
+                , { field: 'account_str', title: '收入账户', sort: true }
+                , { field: 'project_str', title: '业务项目', sort: true }
+                , { field: 'agent_str', title: '经办人', sort: true }
+                , { field: 'income_date_str', title: '收款日期', sort: true }
+            ]]
+            , page: true
+        });
+
+    });
+</script>
+{include file="public/footer"}
