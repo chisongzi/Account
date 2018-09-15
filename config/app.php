@@ -129,9 +129,12 @@ return [
     // 路由缓存类型及参数
     'route_cache_option'     => [],
 
+    // // 默认跳转页面对应的模板文件
+    // 'dispatch_success_tmpl'  => Env::get('think_path') . 'tpl/dispatch_jump.tpl',
+    // 'dispatch_error_tmpl'    => Env::get('think_path') . 'tpl/dispatch_jump.tpl',
     // 默认跳转页面对应的模板文件
-    'dispatch_success_tmpl'  => Env::get('think_path') . 'tpl/dispatch_jump.tpl',
-    'dispatch_error_tmpl'    => Env::get('think_path') . 'tpl/dispatch_jump.tpl',
+    'dispatch_success_tmpl'  => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
+    'dispatch_error_tmpl'    => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
 
     // 异常页面的模板文件
     'exception_tmpl'         => Env::get('think_path') . 'tpl/think_exception.tpl',
@@ -142,5 +145,36 @@ return [
     'show_error_msg'         => true,
     // 异常处理handle类 留空使用 \think\exception\Handle
     'exception_handle'       => '',
+
+    'auto_start'   => true,
+    'url_route_on' => true,
+
+     // +----------------------------------------------------------------------
+    // | 验证码设置
+    // +----------------------------------------------------------------------
+    'captcha'  => [
+        // 验证码字符集合
+        'codeSet'  => '2345678abcdefhijkmnpqrstuvwxyzABCDEFGHJKLMNPQRTUVWXY', 
+        // 验证码字体大小(px)
+        'fontSize' => 28, 
+        // 是否画混淆曲线
+        'useCurve' => false, 
+        //是否添加杂点
+        'useNoise' => true,
+         // 验证码图片高度
+        'imageH'   => 0,
+        // 验证码图片宽度
+        'imageW'   => 0, 
+        // 验证码位数
+        'length'   => 4, 
+        // 验证成功后是否重置        
+        'reset'    => true,
+        //过期时间S
+        'expire'   => 300,
+        //是否开启中文验证码
+        'useZh'    => false,
+        //中文验证码字符集
+        'zhSet'    => '',
+    ],
 
 ];

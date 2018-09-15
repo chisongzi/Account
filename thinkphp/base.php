@@ -12,6 +12,8 @@ namespace think;
 
 // 载入Loader类
 require __DIR__ . '/library/think/Loader.php';
+define('DS', DIRECTORY_SEPARATOR);
+defined('THINK_PATH') or define('THINK_PATH', __DIR__ . DS);
 
 // 注册自动加载
 Loader::register();

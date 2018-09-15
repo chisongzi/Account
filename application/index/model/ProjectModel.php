@@ -29,18 +29,23 @@ class ProjectModel extends BaseModel{
     public function itemNameList(){
 
         $data = DB::table('acc_item')
-        ->field('name')
+        ->field('id,name,method')
         ->where('is_del',0)
         ->select()
         ;
-        $result =[
-            'code'=>0,
-            'msg'=>'',
-            'data'=>(object)[]
-        ];
-        $result['data'] = $data;
-   
-        return json_encode($result);
+
+        $nameArray = array();
+        foreach($data as $value){
+            $nameArray[$value['id']] = $value['name'];
+
+
+            // $valueArray = array();
+            // $valueArray['name'] = $value['name'];
+            // $valueArray['method'] = $value['method'];
+            // $nameArray[$value['id']] = $valueArray;
+
+        }
+        return $nameArray;
     }
     //添加项目
     public function addItem($item){

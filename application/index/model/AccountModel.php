@@ -41,7 +41,11 @@ class AccountModel extends BaseModel{
         ->field('id,name')
         ->select()
         ;
-        return $data;
+        $nameArray = array();
+        foreach($data as $value){
+            $nameArray[$value['id']] = $value['name'];
+        }
+        return $nameArray;
     }
 
 }

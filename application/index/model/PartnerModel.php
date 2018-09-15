@@ -47,6 +47,10 @@ class PartnerModel extends BaseModel{
          ->where('is_del',0)
          ->select()
          ;
-         return $data;
+         $nameArray = array();
+         foreach($data as $value){
+             $nameArray[$value['id']] = $value['name'];
+         }
+         return $nameArray;
      }
 }

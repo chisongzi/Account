@@ -3,6 +3,11 @@ namespace app\index\controller;
 use think\Controller;
 class Setting extends Controller{
 
+    //用户管理view
+    public function user(){
+        return $this->fetch();
+    }
+
     //资金账户view
     public function account(){
         return $this->fetch();

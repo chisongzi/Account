@@ -43,7 +43,7 @@
         </dl>
       </li>
       <li class="layui-nav-item">
-        <a href="">退了</a>
+        <a href="javascript:;" id="logout">退了</a>
       </li>
     </ul>
   </div>
@@ -84,7 +84,7 @@
           <a href="javascript:;">日常记账</a>
           <dl class="layui-nav-child">
             <dd>
-              <a target="main" href="<?php echo url('account/expend')?>">支出记账</a>
+              <a target="main" href="<?php echo url('book/expend')?>">支出记账</a>
             </dd>
             <dd>
               <a target="main" href="<?php echo url('project/archived')?>">应付记账</a>
@@ -112,8 +112,11 @@
         <li class="layui-nav-item">
             <a href="javascript:;">系统设置</a>
             <dl class="layui-nav-child">
+                <dd>
+                    <a target="main" href="<?php echo url('setting/user')?>">用户管理</a>
+                  </dd>
               <dd>
-                <a target="main" href="<?php echo url('account/expend')?>">权限管理</a>
+                <a target="main" href="<?php echo url('book/expend')?>">权限管理</a>
               </dd>
               <dd>
                 <a target="main" href="<?php echo url('setting/account')?>">我的资金账户</a>
@@ -146,10 +149,4 @@
   </div>
 
 </div>
-<script>
-  layui.use(['element'], function () {
-    var element = layui.element
-
-      ;
-  });
-</script> {include file="public/footer " /}
+ {include file="public/footer " /}

@@ -6,14 +6,15 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">支出金额</label>
                 <div class="layui-input-inline">
-                    <input class="layui-input" type="text" autocomplete="off">
+                    <input class="layui-input" type="number" name="expendAmount" id="expendAmount" lay-verify="required"   autocomplete="off">
                 </div>
             </div>
             <div class="layui-form-item">
                 <div class="layui-inline">
                     <label class="layui-form-label">支出类型</label>
                     <div class="layui-input-inline">
-                        <select name="expendType">
+                        <select name="expendType" lay-verify="required">
+
                             <option value="">请选择支出类型</option>
                             <option value="1">生活用品</option>
                             <option value="2">家用电器</option>
@@ -22,11 +23,12 @@
                     </div>
                     <label class="layui-form-label">生意伙伴</label>
                     <div class="layui-input-inline">
-                        <select name="bussinessPartner">
+                        <select name="bussinessPartner" lay-verify="required">
+
                             <option value="">请选择生意伙伴</option>
-                            <option value="1">生意伙伴1</option>
-                            <option value="2">生意伙伴2</option>
-                            <option value="3">生意伙伴3</option>
+                            {foreach $partnerNameList as $key=> $value}
+                            <option value="{$key}}">{$value}</option>
+                            {/foreach}
                         </select>
                     </div>
                 </div>
@@ -37,16 +39,16 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">支出账户</label>
                     <div class="layui-input-inline">
-                        <select name="expendAccount">
+                        <select name="expendAccount" lay-verify="required">
                             <option value="">请选择账户</option>
-                            <option value="1">账户1</option>
-                            <option value="2">账户2</option>
-                            <option value="3">账户3</option>
+                            {foreach $accountNameList as $key=> $value}
+                            <option value="{$key}}">{$value}</option>
+                            {/foreach}
                         </select>
                     </div>
                     <label class="layui-form-label">付款日期</label>
                     <div class="layui-input-inline">
-                        <input class="layui-input" id="paymentDateStr" name="paymentDateStr" placeholder="年-月-日">
+                        <input class="layui-input" id="paymentDateStr" name="paymentDateStr" lay-verify="required|date" placeholder="年-月-日">
                     </div>
                 </div>
             </div>
@@ -55,20 +57,28 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">业务项目</label>
                     <div class="layui-input-inline">
-                        <select name="project">
+                        <select name="project" lay-verify="required" lay-search="">
                             <option value="">请选择项目</option>
-                            <option value="1">项目1</option>
-                            <option value="2">项目2</option>
-                            <option value="3">项目3</option>
+                            {foreach $projectNameList as $key=> $value}
+                            <option value="{$key}}">{$value}</option>
+                            {/foreach}
                         </select>
                     </div>
+                    <label class="layui-form-label">单号</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" name="number" id="number" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
                     <label class="layui-form-label">经办人</label>
                     <div class="layui-input-inline">
-                        <select name="agent">
+                        <select name="agent" lay-verify="required">
                             <option value="">请选择经办人</option>
-                            <option value="1">经办人1</option>
-                            <option value="2">经办人2</option>
-                            <option value="3">经办人3</option>
+                            {foreach $agentNameList as $key => $value}
+                            <option value="{$key}">{$value}</option>
+                            {/foreach}
                         </select>
                     </div>
                 </div>
@@ -101,6 +111,13 @@
             ;
         laydate.render({
             elem: '#paymentDateStr'
+        });
+
+        form.on('submit(filterSubmit)', function (obj) {
+            var data = obj.field;
+            layer.alert(JSON.stringify(data));
+
+            return false;
         });
 
     });
