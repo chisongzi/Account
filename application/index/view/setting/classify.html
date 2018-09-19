@@ -1,0 +1,45 @@
+{include file="public/toper"}
+<div class="layui-card">
+    <div class="layui-card-header">
+            收支分类
+    </div>
+    <div class="layui-card-body">
+            <ul id="treeTest"></ul>
+    </div>
+
+</div>
+
+<script>
+    layui.use(['tree', 'layer'], function () {
+        var $ = layui.$
+            , tree = layui.tree
+            ;
+        $('#test').click(function () {
+            layer.alert("{$treeList}");
+        });
+
+        layui.tree({
+            elem: '#treeTest'
+            // , nodes: getTree()
+            , nodes: getTree()
+            , click: function (node) {
+                layer.msg(JSON.stringify(node) );
+            }
+        });
+
+        function getTree() {
+            var nodes = "";
+            $.ajax({
+                url: "/index/setting/classifyList"
+                , dataType: "json"
+                , async: false
+                , success: function (data) {
+                    nodes = JSON.parse(data);
+                }
+            });
+            return nodes;
+        }
+
+    });
+</script>
+{include file="public/footer"}
